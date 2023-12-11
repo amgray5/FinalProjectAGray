@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oni's Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #232323;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .login-container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #444;
+        }
+        tr:nth-child(even) {
+            background-color: #555;
+        }
+        tr:hover {
+            background-color: #666;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .delete-btn:hover {
+            background-color: #0056b3;
+        }
+        .add-btn {
+            margin-left: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .add-btn:hover {
+            background-color: #0056b3;
+        }
+        .download-template-btn {
+            margin-left: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .download-template-btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+    <script>
+        function downloadTemplate() {
+            var link = document.createElement("a");
+            link.download = "Add_Cards_Template.csv";
+            link.href = "/download/Add_Cards_Template.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        function openSubWindow() {
+            var subWindow = window.open('', '_blank', 'width=400,height=300');
+            subWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Add Cards</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #232323;
+                            color: #fff;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        h2 {
+                            text-align: center;
+                        }
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+                        input[type="file"] {
+                            margin-bottom: 10px;
+                        }
+                        input[type="submit"] {
+                            padding: 8px 20px;
+                            background-color: #007bff;
+                            color: #fff;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 14px;
+                        }
+                        input[type="submit"]:hover {
+                            background-color: #0056b3;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h2>Upload CSV</h2>
+                    <form id="uploadForm" method="POST" action="/add_cards/oni" enctype="multipart/form-data">
+                        <input type="file" name="csvFile" accept=".csv"><br><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </body>
+                </html>
+            `);
+            subWindow.document.close();
+        }
+
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Oni's Collection</h1>
+        <div class="btn-container">
+            <form method="POST" action="/delete_cards/oni" class="btn-container">
+                <!-- Delete Cards button -->
+                <input class="delete-btn" type="submit" value="Delete Cards">
+
+                <!-- Add Card(s) button -->
+                <input class="add-btn" type="button" onclick="openSubWindow()" value="Add Card(s)">
+
+                <!-- Download Template to add cards button-->
+                <input class="download-template-btn" type="button" onclick="downloadTemplate()" value="Download Template">
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Database ID</th>
+                    <th>Card Name</th>
+                    <th>Foiling</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>CMC</th>
+                    <th>Set Name</th>
+                    <th>Color Identity</th>
+                    <th>Set Code</th>
+                    <th>Col Num</th>
+                    <th>Lang Code</th>
+                    <th>TCG ID</th>
+                    <th>PNG URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td><input type="checkbox" name="selected_rows" value="{{ row[0] }}"></td>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                    <td>{{ row[10] }}</td>
+                    <td>{{ row[11] }}</td>
+                    <td>{{ row[12] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Logout button -->
+        <form method="POST" action="/logout">
+            <input class="logout-btn" type="submit" value="Logout">
+        </form>
+    </div>
+</body>
+</html>

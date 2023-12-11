@@ -51,11 +51,22 @@
             background-color: #0056b3;
         }
     </style>
+    <script>
+        function displayInvalidPasswordMessage() {
+            var password = document.getElementById("password").value;
+            var username = document.getElementById("username").value;
+
+            if ((username === "Oni" && password !== "Urza") || (username === "Nyx" && password !== "Chandra")) {
+                alert('Invalid Password');
+                return false; // Prevent form submission
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="login-container">
         <h1>Login</h1>
-        <form method="POST" action="/login">
+        <form method="POST" action="/login" onsubmit="return displayInvalidPasswordMessage()">
             <label for="username">Username:</label>
             <select name="username" id="username">
                 <option value="Oni">Oni</option>
