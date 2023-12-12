@@ -161,3 +161,5 @@ cython_debug/
 
 #This file houses private data to connect to my personal database.
 DatabaseConnection.py
+
+test.py
