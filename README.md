@@ -14,9 +14,9 @@ This project is an example of a online portal for Magic the Gathering game store
 - Delete Cards from Database
 - Search Table
 - Sort Table
-    - Select, CMC, and PNG URL columns not sortable
+    - "Select", "CMC", and "PNG URL" columns are not sortable
 - Logout
-    - Takes you back to login and closes connections
+    - Takes you back to login and closes database connection
 
 ## Pip Install Instructions
 Please run the following:
