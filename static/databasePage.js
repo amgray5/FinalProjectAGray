@@ -105,3 +105,28 @@ function setDatabaseIdAndSubmit() {
         alert('Please select at least one row for deletion.');
     }
 }
+function searchTable() {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("searchInput").value.toUpperCase();
+    table = document.getElementById("dataTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) { // Start from index 1 to skip the header row
+        var display = "none";
+        td = tr[i].getElementsByTagName("td");
+
+        for (j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    display = "";
+                    break; // Display the row if found in any column
+                }
+            }
+        }
+
+        tr[i].style.display = display;
+    }
+}
+// Event listener for input event on search bar
+document.getElementById("searchInput").addEventListener("input", searchTable);

@@ -8,35 +8,44 @@
 <body>
     <div class="login-container">
         <h1>Oni's Collection</h1>
-        <div class="btn-container">
-            <form method="POST" action="/delete_cards/oni" class="btn-container" id="deleteForm">
-                <!-- Hidden input to capture row[1] of database & Delete Cards button -->
-                <button class="delete-btn" onclick="setDatabaseIdAndSubmit()" type="button">Delete Cards</button>
+        <div class="search-btn-container">
+        <!-- Table Buttons -->
+            <div class="btn-container">
+                <form method="POST" action="/delete_cards/oni" class="btn-container" id="deleteForm">
+                    <!-- Hidden input to capture row[1] of database & Delete Cards button -->
+                    <button class="delete-btn" onclick="setDatabaseIdAndSubmit()" type="button">Delete Cards</button>
 
-                <!-- Add Card(s) button -->
-                <input class="add-btn" type="button" onclick="openSubWindow()" value="Add Card(s)">
+                    <!-- Add Card(s) button -->
+                    <button class="add-btn" onclick="openSubWindow()" type="button"> Add Card(s)</button>
 
-                <!-- Download Template to add cards button-->
-                <input class="download-template-btn" type="button" onclick="downloadTemplate()" value="Download Template">
-            </form>
+                    <!-- Download Template to add cards button-->
+                    <button class="download-template-btn" onclick="downloadTemplate()" type="button">Download Template</button>
+                </form>
+            </div>
+
+        <!-- Search bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="Search...">
+            </div>
+
         </div>
-        <table>
-            <thead>
+        <table id="dataTable">
+            <thead class="header">
                 <tr>
-                    <th>Select</th>
-                    <th>Database ID</th>
-                    <th>Card Name</th>
-                    <th>Foiling</th>
-                    <th>Price</th>
-                    <th>Type</th>
-                    <th>CMC</th>
-                    <th>Set Name</th>
-                    <th>Color Identity</th>
-                    <th>Set Code</th>
-                    <th>Col Num</th>
-                    <th>Lang Code</th>
-                    <th>TCG ID</th>
-                    <th>PNG URL</th>
+                    <th>Select <span id="sortIcon0" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(1)">Database ID <span id="sortIcon1" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(2)">Card Name <span id="sortIcon2" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(3)">Foiling <span id="sortIcon3" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(4)">Price <span id="sortIcon4" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(5)">Type <span id="sortIcon5" class="arrow-icon"></span></th>
+                    <th>CMC <span id="sortIcon6" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(7)">Set Name <span id="sortIcon7" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(8)">Color Identity <span id="sortIcon8" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(9)">Set Code <span id="sortIcon9" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(10)">Collector Number <span id="sortIcon10" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(11)">Language Code <span id="sortIcon11" class="arrow-icon"></span></th>
+                    <th onclick="sortTable(12)">TCG ID <span id="sortIcon12" class="arrow-icon"></span></th>
+                    <th>PNG URL <span id="sortIcon13" class="arrow-icon"></th>
                 </tr>
             </thead>
             <tbody>
@@ -60,11 +69,14 @@
                 {% endfor %}
             </tbody>
         </table>
+
         <!-- Logout button -->
         <form method="POST" action="/logout">
             <input class="logout-btn" type="submit" value="Logout">
         </form>
+
     </div>
     <script src="{{ url_for('static', filename='databasePage.js') }}"></script>
+    <script src="{{ url_for('static', filename='sortingScript.js') }}"></script>
 </body>
 </html>

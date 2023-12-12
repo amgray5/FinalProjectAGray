@@ -25,10 +25,14 @@ table {
 th, td {
     border: 1px solid #555;
     padding: 8px;
-    text-align: left;
 }
 th {
     background-color: #444;
+    text-align: center;
+
+}
+tr {
+    text-align: center;
 }
 tr:nth-child(even) {
     background-color: #555;
@@ -94,4 +98,37 @@ tr:hover {
 }
 .download-template-btn:hover {
     background-color: #0056b3;
+}
+.search-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+}
+.search-bar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+/* Arrow icons */
+.arrow-icon::after {
+    content: attr(data-sort);
+    padding-left: 5px;
+    display: inline-block;
+    color: #fff;
+}
+
+/* Arrow up */
+.arrow-up::after {
+    content: '↑';
+}
+
+/* Arrow down */
+.arrow-down::after {
+    content: '↓';
 }

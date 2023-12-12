@@ -74,9 +74,6 @@ def logout():
 def delete_cards(table_name):
     selected_rows = request.form.getlist('selected_rows')
 
-    with open('test.txt', 'w') as file:
-        file.write(str(selected_rows))
-
     if table_name == 'oni':
         delete_query = "DELETE FROM Oni_Collection WHERE Database_ID = %s"
     elif table_name == 'nyx':
