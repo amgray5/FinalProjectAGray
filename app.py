@@ -1,12 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
-from DatabaseConnection import mtg_database
+# INF601 - Advanced Programming in Python
+# Austin Gray
+# Final Project
+
 import csv
-from io import TextIOWrapper
 import requests
-
 import sqlite3
-
-temp = []
+from DatabaseConnection import mtg_database
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from io import TextIOWrapper
 
 app = Flask(__name__)
 
