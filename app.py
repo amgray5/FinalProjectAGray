@@ -201,6 +201,5 @@ def add_cards(table_name):
 
     return 'CSV file uploaded and data processed successfully'
 
-
 if __name__ == '__main__':
     app.run(debug=True)
