@@ -6,6 +6,8 @@ import requests
 
 import sqlite3
 
+temp = []
+
 app = Flask(__name__)
 
 def initialize_database():
@@ -60,7 +62,11 @@ def oni_database():
 
 @app.route('/nyx_database')
 def nyx_database():
-    return "Welcome to Nyx's Database"
+    cursor = mtg_database.cursor()
+    cursor.execute("SELECT * FROM Nyx_Collection")
+    rows = cursor.fetchall()  # Fetch all rows
+
+    return render_template('nyx_database.html', rows=rows)
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -128,7 +134,7 @@ def add_cards(table_name):
         card_name = json_obj['name']
 
         if foiling == 'None':
-            price = json_obj['prices']['usd']
+            price = 0.00 if json_obj['prices']['usd'] == None else json_obj['prices']['usd']
         elif foiling.lower() == 'f':
             price = json_obj['prices']['usd_foil']
             foiling = 'Foiled'
@@ -180,6 +186,11 @@ def add_cards(table_name):
             """
 
         values = (card_name, foiling, price, card_type, cmc, set_name, color_id, set_code, collector_number, language_code, tcg_id, png_url)
+
+        temp.append(values)
+
+        with open('test.txt', 'w') as f:
+            f.write(f'{card_name} - {foiling}')
 
         for i in range(0, int(quantity)):
             cursor.execute(add_query, values)

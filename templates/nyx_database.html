@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Oni's Database</title>
+    <title>Nyx's Database</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='databasePage.css') }}">
 </head>
 <body>
     <div class="login-container">
-        <h1>Oni's Collection</h1>
+        <h1>Nyx's Collection</h1>
         <div class="search-btn-container">
         <!-- Table Buttons -->
             <div class="btn-container">
-                <form method="POST" action="/delete_cards/oni" class="btn-container" id="deleteForm">
+                <form method="POST" action="/delete_cards/nyx" class="btn-container" id="deleteForm">
                     <!-- Hidden input to capture row[1] of database & Delete Cards button -->
                     <button class="delete-btn" onclick="setDatabaseIdAndSubmit()" type="button">Delete Cards</button>
 
@@ -76,7 +76,7 @@
         </form>
 
     </div>
-    <script src="{{ url_for('static', filename='oni_database.js') }}"></script>
+    <script src="{{ url_for('static', filename='nyx_database.js') }}"></script>
     <script src="{{ url_for('static', filename='sortingScript.js') }}"></script>
 </body>
 </html>
