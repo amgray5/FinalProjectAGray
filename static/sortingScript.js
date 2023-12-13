@@ -28,6 +28,15 @@ function sortTable(columnIndex) {
         const cellA = rowA.querySelectorAll("td")[columnIndex].textContent.trim();
         const cellB = rowB.querySelectorAll("td")[columnIndex].textContent.trim();
 
+        // Handle blank values by defaulting them to the top
+        if (cellA === '' && cellB === '') {
+            return 0; // If both cells are empty, consider them equal
+        } else if (cellA === '') {
+            return isAscending ? -1 : 1; // Sort empty cellA to the top
+        } else if (cellB === '') {
+            return isAscending ? 1 : -1; // Sort empty cellB to the top
+        }
+
         let valueA = isNaN(cellA) ? cellA : parseFloat(cellA);
         let valueB = isNaN(cellB) ? cellB : parseFloat(cellB);
 

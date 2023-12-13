@@ -16,7 +16,7 @@
                     <button class="delete-btn" onclick="setDatabaseIdAndSubmit()" type="button">Delete Cards</button>
 
                     <!-- Add Card(s) button -->
-                    <button class="add-btn" onclick="openSubWindow()" type="button"> Add Card(s)</button>
+                    <button class="add-btn" onclick="openSubWindow('/add_cards/oni')" type="button"> Add Card(s)</button>
 
                     <!-- Download Template to add cards button-->
                     <button class="download-template-btn" onclick="downloadTemplate()" type="button">Download Template</button>
@@ -45,7 +45,7 @@
                     <th onclick="sortTable(10)">Collector Number <span id="sortIcon10" class="arrow-icon"></span></th>
                     <th onclick="sortTable(11)">Language Code <span id="sortIcon11" class="arrow-icon"></span></th>
                     <th onclick="sortTable(12)">TCG ID <span id="sortIcon12" class="arrow-icon"></span></th>
-                    <th>PNG URL <span id="sortIcon13" class="arrow-icon"></th>
+                    <th>Card Photo URL <span id="sortIcon13" class="arrow-icon"></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,19 +64,21 @@
                     <td>{{ row[9] }}</td>
                     <td>{{ row[10] }}</td>
                     <td>{{ row[11] }}</td>
-                    <td>{{ row[12] }}</td>
+                    <td><a href="{{ row[12] }}" target="_blank" class="card-view-link">View Card</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
+        <!-- Download CSV Button-->
+        <button class="download-csv-btn">Download CSV</button>
         <!-- Logout button -->
         <form method="POST" action="/logout">
             <input class="logout-btn" type="submit" value="Logout">
         </form>
 
     </div>
-    <script src="{{ url_for('static', filename='oni_database.js') }}"></script>
+    <script src="{{ url_for('static', filename='database.js') }}"></script>
     <script src="{{ url_for('static', filename='sortingScript.js') }}"></script>
 </body>
 </html>
