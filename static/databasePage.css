@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 .login-container {
-    width: 80%;
+    width: 95%;
     margin: 50px auto;
     background-color: #333;
     padding: 20px;
@@ -16,6 +16,9 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+    font-size: 275%;
 }
 table {
     width: 100%;
@@ -23,13 +26,12 @@ table {
     margin-top: 20px;
 }
 th, td {
-    border: 1px solid #555;
+    border: 1px solid #232323;
     padding: 8px;
 }
 th {
     background-color: #444;
     text-align: center;
-
 }
 tr {
     text-align: center;
@@ -118,7 +120,7 @@ tr:hover {
 /* Arrow icons */
 .arrow-icon::after {
     content: attr(data-sort);
-    padding-left: 5px;
+    padding-left: 2px;
     display: inline-block;
     color: #fff;
 }
@@ -131,4 +133,19 @@ tr:hover {
 /* Arrow down */
 .arrow-down::after {
     content: '↓';
+}
+.card-view-link {
+    color: #fff
+}
+.download-csv-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.download-csv-btn:hover {
+    background-color: #0056b3;
 }
