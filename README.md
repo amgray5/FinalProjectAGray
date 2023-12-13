@@ -5,7 +5,7 @@ INF601 Advanced Programing with Python
 Austin Gray
 
 ## Description
-This project is an example of a online portal for Magic the Gathering game stores. It connects to a MySQL database specified in a mtg_database function of a DatabaseConnection.py (example included).
+This project is an example of a online portal for Magic the Gathering game stores. It connects to a MySQL database specified in a mtg_database variable. Database information is pulled from config.py (config_blank.py incldued as template).
 
 ## Functions
 - Add Cards to Database
@@ -23,6 +23,15 @@ Please run the following:
 ```
 pip install -r requirements.txt
 ```
+## Config Requirements
+Your config.py but have the following requirements minimum:
+```
+DB_SERVER   = 'IP to Server'
+DB_NAME     = 'Database Name'
+DB_USERNAME = 'Database Username'
+DB_PASSWORD = 'Database Password'
+```
+
 ## Database Configuration:
 The Card Database must have the following columns and datatypes to function.
 Database_ID is the Primary Key.
