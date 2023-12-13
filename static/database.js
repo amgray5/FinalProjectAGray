@@ -1,3 +1,7 @@
+// INF601 - Advanced Programming in Python
+// Austin Gray
+// Final Project
+
 function downloadTemplate() {
     var link = document.createElement("a");
     link.download = "Add_Cards_Template.csv";

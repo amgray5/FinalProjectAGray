@@ -1,3 +1,7 @@
+# INF601 - Advanced Programming in Python
+# Austin Gray
+# Final Project
+
 class Config(object):
     DEBUG = False
     TESTING = False

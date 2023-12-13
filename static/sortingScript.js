@@ -1,3 +1,7 @@
+// INF601 - Advanced Programming in Python
+// Austin Gray
+// Final Project
+
 // Store the current sorting state
 let sortDirection = {}; // Empty object to track sorting order
 
