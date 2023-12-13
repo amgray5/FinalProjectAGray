@@ -41,7 +41,7 @@ SetCode:        varchar(10)
 ColNum:         varchar(10)
 LangCode:       varchar(10)
 TCG_ID:         int(11)
-PNG_URL:        varchar(3000)
+Photo_URL:      varchar(3000)
 ```
 
 ## Card Data Examples (For csv input)
