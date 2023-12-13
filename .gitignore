@@ -163,3 +163,4 @@ cython_debug/
 DatabaseConnection.py
 
 test.py
+config.py

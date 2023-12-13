@@ -3,18 +3,24 @@
 # Final Project
 
 import csv
+import mysql.connector as sc
 import os
 import requests
 import sqlite3
-from DatabaseConnection import mtg_database
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from io import TextIOWrapper
 
 app = Flask(__name__)
+app.config.from_object('config.DevelopmentConfig')
 
-app.secret_key = os.urandom(24).hex()
+mtg_database = sc.connect(
+    host = app.config['DB_SERVER'],
+    user = app.config['DB_USERNAME'],
+    password = app.config['DB_PASSWORD'],
+    database = app.config['DB_NAME'],
+)
 
-def initialize_database():
+def initialize_username_database():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
 
@@ -29,7 +35,7 @@ def initialize_database():
     conn.commit()
     conn.close()
 
-initialize_database()
+initialize_username_database()
 
 @app.route('/login', methods=['POST'])
 def login():
