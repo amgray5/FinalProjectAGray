@@ -3,6 +3,7 @@
 # Final Project
 
 import csv
+import os
 import requests
 import sqlite3
 from DatabaseConnection import mtg_database
@@ -10,6 +11,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 from io import TextIOWrapper
 
 app = Flask(__name__)
+
+app.secret_key = os.urandom(24).hex()
 
 def initialize_database():
     conn = sqlite3.connect('users.db')
