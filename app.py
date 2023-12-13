@@ -185,9 +185,6 @@ def add_cards(table_name):
 
         values = (card_name, foiling, price, card_type, cmc, set_name, color_id, set_code, collector_number, language_code, tcg_id, photo_url)
 
-        with open('test.txt', 'w') as f:
-            f.write(f'{card_name} - {foiling}')
-
         for i in range(0, int(quantity)):
             cursor.execute(add_query, values)
             mtg_database.commit()
