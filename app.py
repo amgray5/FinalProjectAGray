@@ -169,26 +169,21 @@ def add_cards(table_name):
         except KeyError:
             tcg_id    = 0
 
-        try:
-            png_url = json_obj['image_uris']['png']
-        except KeyError:
-            png_url = json_obj['card_faces'][0]['image_uris']['png']
+        photo_url = f'https://api.scryfall.com/cards/{set_code}/{collector_number}/{language_code}?format=image'
 
         #Connect to database
         cursor = mtg_database.cursor()
 
         if table_name == 'oni':
-            add_query = """INSERT INTO Oni_Collection (CardName, Foiling, Price, Type, CMC, SetName, ColorIdentity, SetCode, ColNum, LangCode, TCG_ID, PNG_URL)
+            add_query = """INSERT INTO Oni_Collection (CardName, Foiling, Price, Type, CMC, SetName, ColorIdentity, SetCode, ColNum, LangCode, TCG_ID, Photo_URL)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
         elif table_name == 'nyx':
-            add_query = """INSERT INTO Nyx_Collection (CardName, Foiling, Price, Type, CMC, SetName, ColorIdentity, SetCode, ColNum, LangCode, TCG_ID, PNG_URL)
+            add_query = """INSERT INTO Nyx_Collection (CardName, Foiling, Price, Type, CMC, SetName, ColorIdentity, SetCode, ColNum, LangCode, TCG_ID, Photo_URL)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
 
-        values = (card_name, foiling, price, card_type, cmc, set_name, color_id, set_code, collector_number, language_code, tcg_id, png_url)
-
-        temp.append(values)
+        values = (card_name, foiling, price, card_type, cmc, set_name, color_id, set_code, collector_number, language_code, tcg_id, photo_url)
 
         with open('test.txt', 'w') as f:
             f.write(f'{card_name} - {foiling}')
